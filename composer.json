@@ -1,0 +1,26 @@
+{
+    "name": "daison/essential",
+    "description": "Your one stop base-code builder",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daison Carino",
+            "email": "daison12006013@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "illuminate/console": "5.6.*",
+        "illuminate/filesystem": "5.6.*",
+        "illuminate/container": "5.6.*",
+        "symfony/process": "^4.1@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Daison\\Essential\\": "src/"
+        }
+    },
+    "bin": [
+        "essential"
+    ]
+}

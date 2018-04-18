@@ -1,0 +1,22 @@
+{
+    "template_path": "template",
+
+    "build_path": "build",
+
+    "replace": {
+        "COMPANY_NAMESPACE": "Acme",
+        "PROJECT_NAMESPACE": "Project",
+        "AUTHOR_NAME": "John Doe",
+        "AUTHOR_EMAIL": "john.doe@example.com"
+    },
+
+    "scripts": {
+        "before": [
+            "composer create-project laravel/laravel {PROJECT_NAME} --prefer-dist"
+        ],
+        "after": [
+            "(cd {PROJECT_NAME} && composer install)",
+            "rm -rf build"
+        ]
+    }
+}

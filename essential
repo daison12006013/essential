@@ -1,0 +1,21 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use Illuminate\Container\Container;
+require __DIR__.'/vendor/autoload.php';
+
+# ------------------------------------------------------------------------------
+
+$container = new Container;
+$app = new Application('Essential', 'v0.1');
+
+foreach (require(__DIR__.'/commands.php') as $command) {
+    $commandInstance = new $command;
+    $commandInstance->setLaravel($container);
+
+    $app->add($commandInstance);
+}
+
+
+$app->run();
