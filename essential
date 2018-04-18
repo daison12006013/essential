@@ -3,7 +3,14 @@
 
 use Symfony\Component\Console\Application;
 use Illuminate\Container\Container;
-require __DIR__.'/vendor/autoload.php';
+
+$autoloadFile = '/vendor/autoload.php';
+
+if (file_exists(__DIR__.$autoloadFile)) {
+    require __DIR__.$autoloadFile;
+} elseif (file_exists(getcwd().$autoloadFile)) {
+    require getcwd().$autoloadFile;
+}
 
 # ------------------------------------------------------------------------------
 
