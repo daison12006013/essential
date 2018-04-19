@@ -10,7 +10,7 @@ The problem here, you always do copy pasting of your **base code**, yet you can 
 # Install
 
 ```
-> composer require --global daison/essential
+> composer global require daison/essential
 ```
 
 if your composer's binary folder is shared to the global executables, then you don't need to call the full path of the binary, or else you need to put it inside your `/usr/local/bin/`
