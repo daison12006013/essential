@@ -15,7 +15,10 @@
             "composer create-project laravel/laravel {PROJECT_NAME} --prefer-dist"
         ],
         "after": [
-            "(cd {PROJECT_NAME} && composer install)",
+            [
+                "cd {PROJECT_NAME}",
+                "composer install"
+            ],
             "rm -rf build"
         ]
     }

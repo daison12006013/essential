@@ -94,6 +94,25 @@ class NewBaseCode extends Command
     }
 
     /**
+     * Parse the array of script into a string
+     *
+     * @param  array  $scripts
+     * @return string
+     */
+    public static function scriptStringify(array $scripts)
+    {
+        $str = null;
+
+        foreach ($scripts as $idx => $script) {
+            if (is_array($script)) {
+                $scripts[$idx] = static::scriptStringify($script);
+            }
+        }
+
+        return implode(' && ', $scripts);
+    }
+
+    /**
      * Run scripts based on the key.
      *
      * @return void
@@ -104,23 +123,18 @@ class NewBaseCode extends Command
             return;
         }
 
-        foreach ($this->configValues['scripts'][$key] as $cmd) {
-            $process = new Process($cmd);
-            $process->setTimeout(
-                isset($this->configValues['per_script_timeout'])
-                    ? $this->configValues['per_script_timeout']
-                    : 3600
-            );
-            $process->start();
+        $inlineScripts = static::scriptStringify($this->configValues['scripts'][$key]);
 
-            foreach ($process as $type => $data) {
-                $this->output->write($data);
-                // if ($process::OUT === $type) {
-                //     $this->output->write($data);
-                // } else { // $process::ERR === $type
-                //     $this->output->write($data);
-                // }
-            }
+        $process = new Process($inlineScripts);
+        $process->setTimeout(
+            isset($this->configValues['per_script_timeout'])
+                ? $this->configValues['per_script_timeout']
+                : 3600
+        );
+        $process->start();
+
+        foreach ($process as $type => $data) {
+            $this->output->write($data);
         }
     }
 
@@ -159,7 +173,7 @@ class NewBaseCode extends Command
     }
 
     /**
-     * [parseVariables description]
+     * Parse the variables as slug pattern.
      *
      * @param  array $vars
      * @return array
