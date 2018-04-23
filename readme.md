@@ -37,13 +37,13 @@ The above command should generate a file called `essential.json`, the file conta
 ### What it does:
 
 - a VARIABLE based replacer to your own templates
-- On your template folder, it actually iterates all the files; let us say you have 'AUTHOR_NAME' inside your config and all files that has {AUTHOR_NAME} will be replaced.
+- On your template folder, it actually iterates all the files; let us say you have `AUTHOR_NAME` inside your config and all files that has `{AUTHOR_NAME}` will be replaced.
 - You can put bash scripts in it as a json, as long as you follow the rules of json format!
 
 ### Where should you use it?
 
-- Most probably creating your own project installer?
-- Write your own base code dedicated to all your projects? (We're using this actually on my current company and it really helps a lot of time copy-pasting the same base code we have)
+- Most probably creating your own project installer.
+- Write your own base code dedicated to all your projects.
 
 ### Missing Implementations:
 
